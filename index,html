@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,6 +119,8 @@
 </div>
 
 <script>
+    // Store user email for later
+    let userEmail = '';
     let decimalValue;
     let correctAnswer;
     let currentQuestion = 1;
@@ -170,6 +171,7 @@
         if (e.key === 'Enter') {
             const email = e.target.value.trim();
             if (email.length > 0) {
+                userEmail = email;    // ← save email here
                 startTime = new Date();
                 const dateTimeString = startTime.toLocaleString('en-US', { 
                     dateStyle: 'short', 
@@ -237,7 +239,8 @@
 
     function displayResults() {
         const stopTimeString = stopTime.toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' });
-        let results = `Start Time: ${startTime.toLocaleString('en-US', {dateStyle: 'short', timeStyle: 'short'})}<br>`;
+        let results = `Email: ${userEmail}<br>`;  // ← include email
+        results += `Start Time: ${startTime.toLocaleString('en-US', {dateStyle: 'short', timeStyle: 'short'})}<br>`;
         results += `Stop Time: ${stopTimeString}<br>`;
         results += `Correct Conversions: ${correctCount} out of 8.<br>`;
         if (largestMissed > 0) {
